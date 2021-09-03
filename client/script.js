@@ -2,6 +2,10 @@
 //THE TEST SERVER IS RUNNING ON LOCALHOST:3000//
 ////////////////////////////////////////////////
 
+const { default: axios } = require("axios")
+
+
+
 // PROBLEM 1
 /*
     In the index.html file in this folder there is a button with an id of 'say-hello-button'!
@@ -10,7 +14,7 @@
 */
 
 // CODE HERE
-
+let sayHelloButton = document.querySelector('#say-hello-button')
 
 // PROBLEM 2
 /*
@@ -20,7 +24,12 @@
 */
 
 // CODE HERE
-
+function changeColor(event) {
+    event.target.classList.add("hover-class");
+  }
+  
+  sayHelloButton.addEventListener("mouseenter", changeColor);
+}
 
 // PROBLEM 3
 /*
@@ -32,9 +41,13 @@
 */
 
 // CODE HERE
+function originalColor(event) {
+    event.target.classList.remove("hover-class");
+  }
+  
+  sayHelloButton.addEventListener("mouseout", originalColor);
 
-
-// PROBLEM 4
+  // PROBLEM 4
 /*
     Now lets see if we can make a request to our server when we click the button
 
@@ -53,7 +66,7 @@ const sayHello = () => {
 // DO NOT EDIT FUNCTION
 
 // CODE HERE
-
+sayHelloButton.EventListener('sayHello')
 
 // PROBLEM 5 
 /*
@@ -67,7 +80,10 @@ const sayHello = () => {
 */ 
 
 const ohMy = () => {
-    // YOUR CODE HERE
+ axios.get('http://localhost:3000/animals')
+ .then((res) => {
+     console.log(res)
+ })   
 }
 
 document.getElementById('animals-button').addEventListener('click', ohMy)
@@ -87,8 +103,16 @@ document.getElementById('animals-button').addEventListener('click', ohMy)
 */
 
 const repeatMyParam = () => {
-    //YOUR CODE HERE
-}
+    anxios.get('http://localhost:3000/repeat/${'SOMEPARAM'}').then(res) => {
+        let repeatText = document.querySelector('#repeat-button');
+        repeatText.textContent = res.data;
+        repeatText.style.display = "block";
+        console.log(res.data);
+    )}
+};
+let repeatBtn = document
+let repeatBtn = document.querySelector('#repeat-button')
+.addEventListener('click', repeatMyParam);
 
 // PROBLEM 7
 /*
@@ -111,7 +135,10 @@ const repeatMyParam = () => {
 */
 
 // CODE HERE
-
+function askAnything (){
+    axios.get('http://localhost:3000/query-test/?isname=${name}')
+    
+}
 
 
 ////////////////
